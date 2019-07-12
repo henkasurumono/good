@@ -12,20 +12,13 @@ class ArticlesController < ApplicationController
       Article.create(title: article_params[:title], image: article_params[:image], content: article_params[:content],user_id: current_user.id)
   end
 
-
-  private
-  def article_params
-    params.permit(:title, :image,:content)
-  end
-
-  
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
   
 
   def edit
-     @article = Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def update
@@ -46,5 +39,14 @@ class ArticlesController < ApplicationController
     end
   end
 
+
+
+  private
+  def article_params
+    params.permit(:title, :image,:content)
+  end
+
+  
+  
 
 end
